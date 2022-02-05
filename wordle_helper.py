@@ -36,7 +36,7 @@ def correct_pos(letter, pos):
     
     for word in words:
         if word[pos-1] != letter:
-            words.remove(letter)
+            words.remove(word)
 
 print("--- Welcome to Wordle Helper ---")
 print("--- We reccomend your first guess be 'ROATE' ---")
