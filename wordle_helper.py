@@ -4,6 +4,7 @@ from remove import Remove
 f = open('wordle-answers-alphabetical.txt', 'r')
 words = []
 for word in f:
+    word = word[:5]
     words.append(word)
 f.close()
 
