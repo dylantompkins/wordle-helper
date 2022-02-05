@@ -1,53 +1,47 @@
-words = []
+class Remove:
+    def __init__(self, words) -> None:
+        self.words = words
 
-def remove_letter(letter):
-    """If letter in word, remove word from possible answer list
+    def remove_letter(self, letter):
+        """If letter in word, remove word from possible answer list
 
-    Args:
-        letter ([type]): [description]
-    """
-    for word in words:
-        if letter in word:
-            words.remove(word)
+        Args:
+            letter ([type]): [description]
+        """
+        for word in self.words.copy():
+            if letter in word:
+                self.words.remove(word)
 
-def filter_letter(letter):
-    """If letter not in word, remove word from possible answer list
+    def filter_letter(self, letter):
+        """If letter not in word, remove word from possible answer list
 
-    Args:
-        letter ([type]): [description]
-    """
-    for word in words:
-        if not letter in word:
-            words.remove(word)
+        Args:
+            letter ([type]): [description]
+        """
+        for word in self.words.copy():
+            if not letter in word:
+                self.words.remove(word)
 
-def wrong_pos(letter, pos):
-    filter_letter(letter)
-    
-    for word in words:
-        if word[pos-1] == letter:
-            words.remove(word)
+    def wrong_pos(self, letter, pos):
+        self.filter_letter(letter)
+        
+        for word in self.words.copy():
+            if word[pos] == letter:
+                self.words.remove(word)
 
-def correct_pos(letter, pos):
-    filter_letter(letter)
-    
-    for word in words:
-        if word[pos-1] != letter:
-            words.remove(word)
+    def correct_pos(self, letter, pos):        
+        for word in self.words.copy():
+            if word[pos] != letter:
+                self.words.remove(word)
 
-def remove_words(word, colors, input_words) -> list:
-    global words 
-    words = input_words
+    def remove_words(self, word, colors):
+        for i in range(5):
+            letter = word[i]
+            color = colors[i]
 
-    for i in range(5):
-        letter = word[i]
-        color = colors[i]
-        slot = i+1
-
-    if color == 'y':
-        wrong_pos(letter, slot)
-    elif color == 'g':
-        correct_pos(letter, slot)
-    else:
-        remove_letter(letter)
-
-    return words
+            if color == 'y':
+                self.wrong_pos(letter, i)
+            elif color == 'g':
+                self.correct_pos(letter, i)
+            else:
+                self.remove_letter(letter)
