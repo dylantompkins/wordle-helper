@@ -9,6 +9,14 @@ class StateTests(TestCase):
         state.remove_letter('r')
         self.assertEqual(len(state.words), 2)
 
+    def test_correct_pos(self):
+        state = State(['goods', 'baggy', 'hippe', 'dumbo'])
+        self.assertEqual(len(state.words), 4)
+
+        state.correct_pos('g', 0)
+        self.assertEqual(len(state.words), 1)
+
+    
 
 if __name__ == "__main__":
     main()
