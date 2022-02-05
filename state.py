@@ -1,7 +1,6 @@
 class State:
     def __init__(self, words: list) -> None:
         self.words = words
-        print(words)
 
-    def remove(self, word):
-        self.words.remove(word)
+    def remove_letter(self, letter):
+        self.words = [word for word in self.words[:] if not letter in word]

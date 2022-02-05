@@ -1,3 +1,4 @@
+import stat
 from state import State
 
 f = open('wordle-answers-alphabetical.txt', 'r')
@@ -7,14 +8,13 @@ for word in f:
     words.append(just_word)
 f.close()
 
-state = State(words.copy())
+state = State(words[:])
 
 print("--- Welcome to Wordle Helper ---")
 print("--- We reccomend your first guess be 'ROATE' ---")
 
 while True:
     guess = input("What word did you guess?: ")
-    state.remove(guess)
     # colors = input("Colors (y g n): ")
 
 print('You Won')
