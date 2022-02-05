@@ -8,9 +8,7 @@ class Remove:
         Args:
             letter ([type]): [description]
         """
-        for word in self.words.copy():
-            if letter in word:
-                self.words.remove(word)
+        self.words = [word for word in self.words if not letter in word]
 
     def filter_letter(self, letter):
         """If letter not in word, remove word from possible answer list
