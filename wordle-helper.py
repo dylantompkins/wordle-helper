@@ -36,22 +36,26 @@ def correct_pos(letter, pos):
     
     for word in words:
         if word[pos-1] != letter:
-            words.remove(letter)
+            words.remove(word)
 
 print("--- Welcome to Wordle Helper ---")
 print("--- We reccomend your first guess be 'ROATE' ---")
 
 while True:
-    letter = input("letter: ")
-    slot = int(input("slot: ")) # TODO auto do 5 at a time in order
-    color = input("(y)ellow or (g)reen or (n)one: ")
+    word = input('Enter the word you guessed: ')
+    success = input('What color is each letter? (y)ellow, (g)reeen, or (n)one: ')
 
-    if color == 'y':
-        wrong_pos(letter, slot)
-    elif color == 'g':
-        correct_pos(letter, slot)
-    else:
-        remove_letter(letter)
+    for i in range(5):
+        letter = word[i]
+        color = success[i]
+        slot = i+1
+
+        if color == 'y':
+            wrong_pos(letter, slot)
+        elif color == 'g':
+            correct_pos(letter, slot)
+        else:
+            remove_letter(letter)
 
     if len(words) == 1:
         break
